@@ -19,6 +19,11 @@ $ kubectl describe deployments --namespace kube-system
 - Wordpress
 - Monitoring
 ### Créer les namespaces avec leurs quotas
+Requirements source: 
+- https://www.servermania.com/kb/articles/what-are-the-requirements-for-a-wordpress-server/
+- https://dev.mysql.com/doc/mysql-monitor/4.0/en/system-prereqs-reference.html
+- https://grafana.com/docs/grafana/latest/installation/requirements/
+- https://prometheus.io/docs/prometheus/1.8/storage/#memory-usage
 TODO: regarder les recommendations de quotas de machine (et le noter dans le readme)
 ```
 $ kubectl apply -f ./configs/base-de-donnees.yml
