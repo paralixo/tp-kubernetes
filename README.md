@@ -13,10 +13,18 @@ $ kubectl describe deployments --namespace kube-system
 ```
 
 ## Découpage de namespace
+### Proposer un découpage
 3 namespaces:
 - Base de donnée
 - Wordpress
 - Monitoring
+### Créer les namespaces avec leurs quotas
+TODO: regarder les recommendations de quotas de machine (et le noter dans le readme)
+```
+$ kubectl apply -f ./configs/base-de-donnees.yml
+$ kubectl apply -f ./configs/wordpress.yml
+$ kubectl apply -f ./configs/monitoring.yml
+```
 
 ## KubeDB
 ### Mise en palce de KubeDB
@@ -28,9 +36,14 @@ $ helm install kubedb-operator appscode/kubedb --version v0.13.0-rc.0 --namespac
 ### Comprendre le principe de CRD (custom resource definition)
 TODO avec MySQL pour WP
 TODO faire kubeDB avant deployment wordpress
+
 ## Wordpress
 TODO https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/
+
 ## RBAC
+
 ## Monitoring
+
 ## OIDC
+
 ## Registry + GUI Web
