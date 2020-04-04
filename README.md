@@ -18,6 +18,7 @@ $ kubectl describe deployments --namespace kube-system
 - Base de donnée
 - Wordpress
 - Monitoring
+
 ### Créer les namespaces avec leurs quotas
 Requirements source: 
 - https://www.servermania.com/kb/articles/what-are-the-requirements-for-a-wordpress-server/
@@ -25,8 +26,9 @@ Requirements source:
 - https://grafana.com/docs/grafana/latest/installation/requirements/
 - https://prometheus.io/docs/prometheus/1.8/storage/#memory-usage
 TODO: regarder les recommendations de quotas de machine (et le noter dans le readme)
+
 ```
-$ kubectl apply -f ./configs/base-de-donnees.yml
+$ kubectl apply -f ./configs/database.yml
 $ kubectl apply -f ./configs/wordpress.yml
 $ kubectl apply -f ./configs/monitoring.yml
 ```
@@ -38,12 +40,19 @@ $ helm repo add appscode https://charts.appscode.com/stable/
 $ helm repo update
 $ helm install kubedb-operator appscode/kubedb --version v0.13.0-rc.0 --namespace kube-system
 ```
+
 ### Comprendre le principe de CRD (custom resource definition)
 TODO avec MySQL pour WP
 TODO faire kubeDB avant deployment wordpress
 
+
+
 ## Wordpress
 TODO https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/
+### Mettre en place un wordpress répliqué
+### Utilisation des ConfigMap et/ou Secret
+### Un service redondant
+### Backups de la base de données
 
 ## RBAC
 
