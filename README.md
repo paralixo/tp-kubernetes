@@ -89,6 +89,46 @@ TODO
 
 ## Wordpress
 TODO https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/
+
+On commence par créer un fichier `kustomization.yml` pour avoir notre mot de passe et charger les ressources a deployer.
+
+``` 
+$ kubectl apply -f ./conf/wordpress/namespace.yml
+namespace/wordpress created
+resourcequota/quota-wordpress created
+$ kubectl.exe apply -k ./conf/wordpress/
+secret/mysql-pass-km99f6b4f8 created
+service/wordpress created
+deployment.apps/wordpress created
+persistentvolumeclaim/wp-pv-claim created
+
+# On vérifie que l'installation s'est bien passé
+# Ca a fonctionné la premiere fois, ensuite il ne se créer plus
+$ kubectl get secrets -n wordpress
+NAME          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+wp-pv-claim   Bound    pvc-ad1561d7-54e5-45d1-add3-cc8857584004   1Gi        RWO            standard       2m15s
+
+$ kubectl get pvc -n wordpress
+NAME             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mysql-pv-claim   Bound    pvc-eb6e4870-d923-4dab-a61d-d98fb7158e58   20Gi       RWO            standard       10s
+wp-pv-claim      Bound    pvc-ad1561d7-54e5-45d1-add3-cc8857584004   1Gi        RWO            standard       18m
+
+$ kubectl get services -n wordpress
+NAME              TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+wordpress         LoadBalancer   10.96.120.189   <pending>     80:30190/TCP   48s
+wordpress-mysql   ClusterIP      None            <none>        3306/TCP       48s
+
+# Le pod qui est censé se générer n'est pas là
+$ kubectl get pods -n wordpress
+No resources found in wordpress namespace.
+
+# Vérifions que wordpress est bien lancé
+$ minikube service wordpress -n wordpress --url
+http://192.168.99.102:30432
+```
+
+Vu que les étapes d'avant se sont mal passés, nous n'avons même pas accès à la page.
+
 ### Mettre en place un wordpress répliqué
 ### Utilisation des ConfigMap et/ou Secret
 ### Un service redondant
