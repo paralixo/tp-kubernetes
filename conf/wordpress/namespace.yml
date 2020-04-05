@@ -3,16 +3,16 @@ kind: Namespace
 metadata:
   name: wordpress
 
-#---
+---
 
-# apiVersion: v1
-# kind: ResourceQuota
-# metadata:
-#   name: quota-wordpress
-#  namespace: wordpress
-#spec:
-#  hard:
-#    requests.cpu: "1"
-#    requests.memory: 1Gi
-#    limits.cpu: "2"
-#    limits.memory: 3Gi
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: quota-wordpress
+  namespace: wordpress
+spec:
+  hard:
+    requests.cpu: "1"
+    requests.memory: 1Gi
+    limits.cpu: "2"
+    limits.memory: 3Gi
