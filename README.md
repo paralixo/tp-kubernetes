@@ -164,7 +164,7 @@ Events:
 
 ```
 
-## Politique de sécurité des systèmes d'information : gestion de rôles.
+## RBAC Politique de sécurité des systèmes d'information : gestion de rôles.
 
 ### 1. Objectif
 
